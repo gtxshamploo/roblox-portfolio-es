@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTX | Roblox Studio Scripter Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-base: #f6f8fb;
+      --cyber-blue: #1b538c;
+      --cyber-blue-hover: #154270;
+      --cyber-dark: #121824;
+      --text-main: #1d2533;
+      --text-muted: #64748b;
+      --border-thin: rgba(0, 0, 0, 0.08);
+      
+      --font-tech: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-bottom: 110px;
+      position: relative;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(27, 83, 140, 0.08) 0%, transparent 45%),
+        linear-gradient(135deg, #f9fbfd 0%, #edf2f7 100%);
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(27, 83, 140, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(27, 83, 140, 0.025) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .banner-container {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      background: #0f172a;
+      border-bottom: 2px solid var(--cyber-blue);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .banner-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .header-section {
+      margin-top: 60px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .dbh-header-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 55%;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .dbh-header-line::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border-thin);
+    }
+
+    .dbh-point {
+      width: 4px;
+      height: 4px;
+      background: var(--cyber-dark);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .main-title {
+      font-family: var(--font-tech);
+      font-size: 3.2rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--cyber-dark);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .subtitle-text {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 740px;
+      border-left: 2px solid var(--cyber-blue);
+      padding-left: 14px;
+    }
+
+    .section-label {
+      font-family: var(--font-tech);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--cyber-dark);
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .services-menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 50px;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      padding: 16px 22px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border-thin);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-title {
+      font-family: var(--font-tech);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--cyber-dark);
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+
+    .service-desc {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      transition: color 0.2s ease;
+    }
+
+    .service-row:hover {
+      background-color: var(--cyber-blue);
+      border-color: var(--cyber-blue);
+      box-shadow: 0 6px 20px rgba(27, 83, 140, 0.25);
+      transform: translateX(4px);
+
+      background-image: 
+        linear-gradient(135deg, rgba(255,255,255,0.12) 25%, transparent 25%), 
+        linear-gradient(225deg, rgba(255,255,255,0.12) 25%, transparent 25%), 
+        linear-gradient(45deg, rgba(255,255,255,0.12) 25%, transparent 25%), 
+        linear-gradient(315deg, rgba(255,255,255,0.12) 25%, transparent 25%);
+      background-position: 12px 0, 12px 0, 0 0, 0 0;
+      background-size: 20px 20px;
+      background-repeat: repeat;
+    }
+
+    .service-row:hover .service-title {
+      color: #ffffff;
+    }
+
+    .service-row:hover .service-desc {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .dbh-global-scroll {
+      position: fixed;
+      right: 20px;
+      top: 260px;
+      bottom: 80px;
+      width: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      user-select: none;
+    }
+
+    .dbh-scroll-track {
+      position: relative;
+      width: 2px;
+      height: calc(100% - 30px);
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .dbh-scroll-thumb {
+      position: absolute;
+      top: 0;
+      left: -1px;
+      width: 4px;
+      height: 60px;
+      background: var(--cyber-dark);
+      transition: transform 0.08s cubic-bezier(0.1, 0.6, 0.2, 1);
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    }
+
+    .dbh-arrow-up, .dbh-arrow-down {
+      font-size: 0.7rem;
+      color: var(--cyber-dark);
+      cursor: pointer;
+      transition: transform 0.15s ease, color 0.15s ease;
+      padding: 2px;
+    }
+
+    .dbh-arrow-up:hover, .dbh-arrow-down:hover {
+      color: var(--cyber-blue);
+      transform: scale(1.3);
+    }
+
+    .custom-job-banner {
+      background: #ffffff;
+      border-left: 3px solid var(--cyber-blue);
+      padding: 20px 24px;
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .custom-job-content h4 {
+      font-family: var(--font-tech);
+      font-size: 1.15rem;
+      color: var(--cyber-dark);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .custom-job-content p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cyber-blue);
+      color: #ffffff;
+      padding: 10px 22px;
+      font-family: var(--font-tech);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn:hover {
+      background: var(--cyber-blue-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+
+    .video-card {
+      background: #ffffff;
+      border: 1px solid var(--border-thin);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .video-card:hover {
+      border-color: var(--cyber-blue);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(27, 83, 140, 0.15);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+    }
+
+    .video-thumbnail img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover .video-thumbnail img {
+      transform: scale(1.04);
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-button {
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyber-blue);
+      transition: all 0.2s ease;
+    }
+
+    .video-card:hover .play-button {
+      background: var(--cyber-blue);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .video-info {
+      padding: 16px;
+    }
+
+    .video-title {
+      font-family: var(--font-tech);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--cyber-dark);
+      line-height: 1.3;
+    }
+
+    .video-description {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .dbh-footer-controls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(246, 248, 251, 0.94);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-thin);
+      padding: 12px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 24px;
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cyber-dark);
+      letter-spacing: 1.5px;
+      z-index: 100;
+    }
+
+    .key-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .key-hint:hover {
+      color: var(--cyber-blue);
+      transform: translateY(-2px);
+    }
+
+    .key-box {
+      background: var(--cyber-dark);
+      color: #ffffff;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+
+    .key-hint:hover .key-box {
+      background: var(--cyber-blue);
+    }
+
+    @media (max-width: 768px) {
+      .main-title { font-size: 2.3rem; }
+      .dbh-header-line { width: 100%; }
+      .dbh-global-scroll { display: none; }
+      .dbh-footer-controls { justify-content: center; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dbh-global-scroll">
+    <span class="dbh-arrow-up" id="scrollUp">▲</span>
+    <div class="dbh-scroll-track" id="scrollTrack">
+      <div class="dbh-scroll-thumb" id="scrollThumb"></div>
+    </div>
+    <span class="dbh-arrow-down" id="scrollDown">▼</span>
+  </div>
+
+  <div class="banner-container">
+    <img src="assets/banner.png" alt="Scripting Banner" onerror="this.style.display='none'">
+  </div>
+
+  <main class="container">
+
+    <header class="header-section">
+      <div class="dbh-header-line">
+        <span class="dbh-point"></span>
+        <span class="dbh-point"></span>
+      </div>
+      <h1 class="main-title">GTX PORTFOLIO</h1>
+      <p class="subtitle-text">
+        ¡Hola! Soy scripter de Roblox con <strong>1 año de experiencia</strong> creando sistemas limpios, optimizados y escalables.
+      </p>
+    </header>
+
+    <section>
+      <h2 class="section-label">
+        <i data-lucide="sliders"></i> Mis Servicios
+      </h2>
+
+      <div class="services-menu-list">
+        
+        <div class="service-row">
+          <div class="service-content-wrapper">
+            <span class="service-title">SISTEMAS DE JUEGO COMPLETOS (GAME LOGIC & LOOPS)</span>
+            <span class="service-desc">Desarrollo integral de la lógica principal para cualquier género (Simulators, RPGs, Minijuegos, Tycoons, etc.)</span>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="service-content-wrapper">
+            <span class="service-title">MECÁNICAS DE JUGADOR Y MOVIMIENTO</span>
+            <span class="service-desc">Controles personalizados, físicas de personaje, habilidades, animaciones procedimentales, etc.</span>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="service-content-wrapper">
+            <span class="service-title">GESTIÓN DE DATOS</span>
+            <span class="service-desc">DataStores seguros y eficientes utilizando ProfileService para evitar pérdida o duplicación de datos</span>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="service-content-wrapper">
+            <span class="service-title">SISTEMAS DE INTERFAZ (UI SCRIPTING)</span>
+            <span class="service-desc">Programación de menús, tiendas, inventarios y HUDs interactivos.</span>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="service-content-wrapper">
+            <span class="service-title">OPTIMIZACIÓN, LIMPIEZA Y BUG FIXING</span>
+            <span class="service-desc">Mejora del rendimiento de tu juego, reducción de lag, refactorización de código y corrección de errores</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="custom-job-banner">
+        <div class="custom-job-content">
+          <h4>¿Necesitás un sistema personalizado que no esté en la lista?</h4>
+          <p>¡No dudes en contactarme para ver si puedo hacerlo!</p>
+        </div>
+        <a href="#contacto" class="btn">
+          <i data-lucide="message-square"></i> Contactar
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-label">
+        <i data-lucide="folder-git-2"></i> Algunos de mis trabajos
+      </h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 0.92rem;">
+        Iré agregando más proyectos a medida que siga desarrollando.
+      </p>
+
+      <div class="portfolio-grid">
+
+        <a href="https://youtu.be/wf5KDRpRml8" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/wf5KDRpRml8/hqdefault.jpg" alt="Crecimiento en tiempo real">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Crecimiento en tiempo real y cultivos offline</h3>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/iowZkWPfN9I" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/iowZkWPfN9I/hqdefault.jpg" alt="Detroit: Become Human, mecánicas">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Detroit: Become Human, mecánicas</h3>
+            <p class="video-description">Sistema de diálogos con distintas ramas y análisis de entorno.</p>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/nHzZdTDP6H4" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/nHzZdTDP6H4/hqdefault.jpg" alt="Sistema de Oxígeno">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Sistema de Oxígeno (Configurable)</h3>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/oR2HO5ro6zw" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/oR2HO5ro6zw/hqdefault.jpg" alt="Sistema de movimiento R6">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Sistema de movimiento R6 modular y configurable</h3>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/Q7nZaYAMTVo" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/Q7nZaYAMTVo/hqdefault.jpg" alt="Sistema de Inventario">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Sistema de Inventario</h3>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/spKG4pP07A8" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/spKG4pP07A8/hqdefault.jpg" alt="Sistema de Morph">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Sistema de Morph (Soporte para R6 y R15)</h3>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/M5UHQer8RXc" target="_blank" class="video-card">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/M5UHQer8RXc/hqdefault.jpg" alt="Sistema de Lobby Teleport / Matchmaking">
+            <div class="play-overlay">
+              <div class="play-button">
+                <i data-lucide="play" style="fill: currentColor; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">Sistema de Lobby Teleport / Matchmaking (Soporta jugadores individuales y colas de grupos/partys)</h3>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section id="contacto" style="margin-bottom: 40px;">
+      <h2 class="section-label"><i data-lucide="mail"></i> Contacto</h2>
+      <div style="background: #ffffff; border: 1px solid var(--border-thin); padding: 35px; text-align: center;">
+        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 20px auto; font-size: 0.92rem;">
+          Disponible para comisiones y desarrollo de sistemas a medida en Roblox Studio.
+        </p>
+        <a href="https://discord.com/users/1186524054384029719" target="_blank" class="btn">
+          <svg viewBox="0 0 127.14 96.36">
+            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,121.5,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.92,53.86,53,48.81,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.92,96.09,53,91,65.69,84.69,65.69Z"/>
+          </svg>
+          Discord
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="dbh-footer-controls">
+    <div class="key-hint" id="keyContact">
+      <span class="key-box">T</span>
+      <span>CONTÁCTAME</span>
+    </div>
+    <div class="key-hint" id="keyHome">
+      <span class="key-box">ESC</span>
+      <span>INICIO</span>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const scrollThumb = document.getElementById('scrollThumb');
+    const scrollTrack = document.getElementById('scrollTrack');
+    const scrollUp = document.getElementById('scrollUp');
+    const scrollDown = document.getElementById('scrollDown');
+
+    function updateScrollHUD() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const trackHeight = scrollTrack.clientHeight - scrollThumb.clientHeight;
+
+      if (docHeight > 0) {
+        const scrollPercent = scrollTop / docHeight;
+        const newTop = scrollPercent * trackHeight;
+        scrollThumb.style.transform = `translateY(${newTop}px)`;
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollHUD);
+    window.addEventListener('resize', updateScrollHUD);
+    updateScrollHUD();
+
+    scrollUp.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    scrollDown.addEventListener('click', () => {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    });
+
+    const keyContact = document.getElementById('keyContact');
+    const keyHome = document.getElementById('keyHome');
+
+    keyContact.addEventListener('click', () => {
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    keyHome.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      if (e.key === 't' || e.key === 'T') {
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+      } else if (e.key === 'Escape') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
